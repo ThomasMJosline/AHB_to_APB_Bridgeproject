@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+
 module AHB_master_interface(
 input Hclk,Hresetn,Hready_out,
 input[31:0]Hrdata,
@@ -8,6 +9,7 @@ output reg [1:0]Htrans,
 output [1:0]Hresp);
 reg[2:0]Hburst;
 reg[2:0]Hsize;
+  
 task single_write();
 begin
 @(posedge Hclk);
@@ -20,6 +22,7 @@ Hburst=0;
 Hready_in=1;
 Haddr=32'h8000_0001;
 end
+  
 @(posedge Hclk);
 #1;
 begin
@@ -28,6 +31,7 @@ Hwdata=8'h80;
 end
 end
 endtask
+  
 task single_read();
 begin
 @(posedge Hclk);
